@@ -18,6 +18,8 @@ const MODEL_LABELS = [
   "Mistral"
 ];
 
+const MODEL_CARD_SELECTOR = /<article class="model-card[\s\S]*?<\/article>/g;
+
 /**
  * Loads the UI markup for validation.
  */
@@ -43,5 +45,17 @@ describe("UI shell", () => {
     expect(markup).toContain('id="model-empty-state"');
     expect(markup).toContain("searchInput.addEventListener");
     expect(markup).toContain("filterButton.addEventListener");
+  });
+
+  it("wires every model card with searchable and filterable metadata", async () => {
+    const markup = await loadMarkup();
+    const modelCards = markup.match(MODEL_CARD_SELECTOR) ?? [];
+
+    expect(modelCards).toHaveLength(MODEL_LABELS.length);
+
+    for (const cardMarkup of modelCards) {
+      expect(cardMarkup).toContain("data-model-name");
+      expect(cardMarkup).toContain("model-capability");
+    }
   });
 });

@@ -13,7 +13,7 @@
     "@types/node": "^25.3.3",
     "@typescript-eslint/eslint-plugin": "^7.8.0",
     "@typescript-eslint/parser": "^8.56.1",
-    "eslint": "^8.57.0",
+    "eslint": "^10.0.3",
     "prettier": "^3.2.5",
     "typescript": "^5.4.5",
     "vitest": "^4.0.18"
